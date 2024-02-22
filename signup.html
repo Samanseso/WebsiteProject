@@ -1,0 +1,96 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user_name'];
+		$password = $_POST['password'];
+
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$password')";
+
+			mysqli_query($con, $query);
+
+			header("Location: login.php");
+			die;
+		}else
+		{
+			echo "Please enter some valid information!";
+		}
+	}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevape Vape Shop - Online Store</title>
+    <link rel="stylesheet" href="style_login.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/acb62c1ffe.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <section class="head">
+                <h1 style="font-size: 10vw;">Sign Up</h1>
+            </section>
+            <section class="main">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email address</label>
+                        <input type="email" placeholder="Enter your Email" class="form-control" id="user_name"  name="user_name" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" placeholder="Enter your password" class="form-control" id="password" name="password">
+                    </div>
+                    
+                    <!-- <div class="mb-3">
+                        <label for="password" class="form-label"> Confirm password</label>
+                        <input type="password" placeholder="Enter your password" class="form-control" id="password" name="password">
+                    </div> -->
+                    <div class="action">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+                    </div>
+                    <div class="login">
+                        <input class="submit_btn" id="button" type="submit" value="Sign Up">
+                    </div>
+                </form>
+            </section>
+            
+            <section class="foot">
+                <div class="line">
+                    <hr width="30%">
+                    <p class="other_login">Or sign up with</p>
+                    <hr width="30%">
+                </div>
+                <div class="login_with">
+                    <button class="foot_btn facebook_btn"><i class="fa-brands fa-facebook"></i> Facebook</button>
+                    <button class="foot_btn google_btn"><i class="fa-brands fa-google"></i> Google</button> 
+                </div>
+
+                <div class="no_account">
+                    <p>Already have an account?<a href="login.php">&nbsp;Login in here.</a> </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
