@@ -218,6 +218,10 @@ a {
         overflow: hidden;
     }
 
+    .hero {
+        height: 100vh;
+    }
+
     .left {
         padding-top: 7%;
     }

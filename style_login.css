@@ -36,8 +36,8 @@
 }
 
 .login {
-    margin-top: 1vh;
-    margin-bottom: 2vh;
+    margin: 0 !important;
+    padding: 20px 0px;
     display: flex;
     justify-content: center;
 }
