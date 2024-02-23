@@ -214,6 +214,14 @@ a {
 
 /* for desktops */
 @media (min-width: 992px) { 
+    body {
+        overflow: hidden;
+    }
+
+    .left {
+        padding-top: 7%;
+    }
+
     .slogan {
         font-size: 4vw;
     }
@@ -244,7 +252,7 @@ a {
     }
 
     .slider_container {
-        width: 70%;
+        width: 62%;
     }
 
     .titles {
